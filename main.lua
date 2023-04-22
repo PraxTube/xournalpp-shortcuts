@@ -1,7 +1,11 @@
 function initUi()
   app.registerUi({["menu"] = "First Pen", ["callback"] = "first_pen", ["accelerator"] = "q"});
+  app.registerUi({["menu"] = "Second Pen", ["callback"] = "second_pen", ["accelerator"] = "w"});
+  app.registerUi({["menu"] = "Third Pen", ["callback"] = "third_pen", ["accelerator"] = "e"});
+  app.registerUi({["menu"] = "Forth Pen", ["callback"] = "forth_pen", ["accelerator"] = "r"});
   app.registerUi({["menu"] = "Select Lasso", ["callback"] = "lasso", ["accelerator"] = "s"});
   app.registerUi({["menu"] = "Eraser", ["callback"] = "eraser", ["accelerator"] = "d"});
+  app.registerUi({["menu"] = "Hand", ["callback"] = "hand", ["accelerator"] = "v"});
   app.registerUi({["menu"] = "Zoom In", ["callback"] = "zoom_in", ["accelerator"] = "a"});
   app.registerUi({["menu"] = "Zoom Out", ["callback"] = "zoom_out", ["accelerator"] = "f"});
 end
@@ -15,8 +19,24 @@ local colorList = {
 }
 
 function first_pen()
+  select_pen(1)
+end
+
+function second_pen()
+  select_pen(2)
+end
+
+function third_pen()
+  select_pen(3)
+end
+
+function forth_pen()
+  select_pen(4)
+end
+
+function select_pen(index)
   app.uiAction({["action"] = "ACTION_TOOL_PEN"})
-  app.changeToolColor({["color"] = colorList[1][2], ["selection"] = true})
+  app.changeToolColor({["color"] = colorList[index][2], ["selection"] = true})
 end
 
 function lasso()
@@ -25,6 +45,10 @@ end
 
 function eraser()
   app.uiAction({["action"] = "ACTION_TOOL_ERASER"})
+end
+
+function hand()
+  app.uiAction({["action"] = "ACTION_TOOL_HAND"})
 end
 
 function zoom_in()
